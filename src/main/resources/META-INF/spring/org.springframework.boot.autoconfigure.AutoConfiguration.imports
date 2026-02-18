@@ -1,1 +1,1 @@
-org.fireflyframework.idp.internaldb.config.InternalDbIdpConfiguration
+org.fireflyframework.idp.internaldb.config.InternalDbIdpAutoConfiguration

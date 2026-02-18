@@ -303,7 +303,7 @@ public class InternalDbIdpAdapter implements IdpAdapter {
                         .sessionId(session.getId().toString())
                         .userId(userUuid.toString())
                         .createdAt(session.getCreatedAt().atZone(java.time.ZoneId.systemDefault()).toInstant())  // Convert to Instant
-                        .lastAccessAt(session.getExpiresAt().atZone(java.time.ZoneId.systemDefault()).toInstant())  // Use lastAccessAt for expires
+                        .expiresAt(session.getExpiresAt().atZone(java.time.ZoneId.systemDefault()).toInstant())
                         .ipAddress(session.getIpAddress())
                         .userAgent(session.getUserAgent())
                         .build())
@@ -417,10 +417,10 @@ public class InternalDbIdpAdapter implements IdpAdapter {
 
     @Override
     public Mono<ResponseEntity<CreateScopeResponse>> createScope(CreateScopeRequest request) {
-        log.debug("Create scope request: {}", request.getName());  // DTO uses 'name' not 'scopeName'
-        
-        // Scopes not implemented in basic version - treat as role
-        return roleService.createRole(request.getName(), request.getDescription())  // DTO uses 'name'
+        log.warn("InternalDbIdpAdapter does not support scopes natively; scope '{}' will be stored as a role. " +
+                "Consider using KeycloakIdpAdapter for full OAuth2 scope support.", request.getName());
+
+        return roleService.createRole(request.getName(), request.getDescription())
                 .map(role -> {
                     CreateScopeResponse response = CreateScopeResponse.builder()
                             .id(role.getId().toString())  // DTO has id field

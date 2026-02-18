@@ -50,9 +50,9 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @EnableConfigurationProperties(InternalDbProperties.class)
 @EnableR2dbcRepositories(basePackages = "org.fireflyframework.idp.internaldb.repository")
 @Slf4j
-public class InternalDbIdpConfiguration {
+public class InternalDbIdpAutoConfiguration {
 
-    public InternalDbIdpConfiguration() {
+    public InternalDbIdpAutoConfiguration() {
         log.info("Internal Database IDP Adapter Configuration loaded");
     }
 
