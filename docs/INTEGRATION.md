@@ -545,6 +545,6 @@ The migrations create these indexes for optimal performance:
 
 ## License
 
-Copyright 2024-2026 Firefly Software Solutions Inc
+Copyright 2024-2026 Firefly Software Foundation
 
 Licensed under the Apache License, Version 2.0
