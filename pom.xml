@@ -19,7 +19,7 @@
     <description>Internal database-based implementation of the Firefly IDP Adapter using R2DBC</description>
 
     <properties>
-        <fireflyframework-idp.version>26.05.07</fireflyframework-idp.version>
+        <fireflyframework-idp.version>26.05.08</fireflyframework-idp.version>
         <jjwt.version>0.13.0</jjwt.version>
     </properties>
 
