@@ -1,6 +1,6 @@
 # Firefly Framework - IDP Internal Database Adapter
 
-[![CI](https://github.com/fireflyframework/fireflyframework-idp-internal-db/actions/workflows/ci.yml/badge.svg)](https://github.com/fireflyframework/fireflyframework-idp-internal-db/actions/workflows/ci.yml)
+[![CI](https://github.com/fireflyframework/fireflyframework-security-idp-internal-db/actions/workflows/ci.yml/badge.svg)](https://github.com/fireflyframework/fireflyframework-security-idp-internal-db/actions/workflows/ci.yml)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
 [![Java](https://img.shields.io/badge/Java-21%2B-orange.svg)](https://openjdk.org)
 [![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.x-green.svg)](https://spring.io/projects/spring-boot)
@@ -25,8 +25,8 @@
 
 ## Overview
 
-`fireflyframework-idp-internal-db` is a **pluggable provider adapter** for the Firefly Framework IDP abstraction
-(`fireflyframework-idp`). Where the core module defines the provider-neutral `IdpAdapter` SPI and the common DTOs
+`fireflyframework-security-idp-internal-db` is a **pluggable provider adapter** for the Firefly Framework IDP abstraction
+(`fireflyframework-security-idp`). Where the core module defines the provider-neutral `IdpAdapter` SPI and the common DTOs
 (`LoginRequest`, `TokenResponse`, `UserInfoResponse`, `SessionInfo`, …), this module supplies a fully self-contained
 implementation that stores users, roles, sessions and tokens in your own relational database and issues signed JWTs
 locally — without delegating to any external identity platform.
@@ -37,10 +37,10 @@ property and one dependency:
 
 | Provider value | Module | Backing identity store |
 |----------------|--------|------------------------|
-| `internal-db`  | **fireflyframework-idp-internal-db** (this module) | Your own PostgreSQL database (R2DBC) |
-| `keycloak`     | fireflyframework-idp-keycloak | Keycloak realm |
-| `cognito`      | fireflyframework-idp-aws-cognito | AWS Cognito user pool |
-| `azure-ad`     | fireflyframework-idp-azure-ad | Microsoft Entra ID (Azure AD) |
+| `internal-db`  | **fireflyframework-security-idp-internal-db** (this module) | Your own PostgreSQL database (R2DBC) |
+| `keycloak`     | fireflyframework-security-idp-keycloak | Keycloak realm |
+| `cognito`      | fireflyframework-security-idp-aws-cognito | AWS Cognito user pool |
+| `azure-ad`     | fireflyframework-security-idp-azure-ad | Microsoft Entra ID (Azure AD) |
 
 The internal-db adapter is the right choice when you need first-party, standalone authentication and authorization —
 development and test environments, microservices that must not depend on an external IDP, or products that ship their
@@ -95,13 +95,13 @@ Add the adapter alongside the IDP core. Versions are managed by the Firefly pare
     <!-- IDP core SPI and DTOs -->
     <dependency>
         <groupId>org.fireflyframework</groupId>
-        <artifactId>fireflyframework-idp</artifactId>
+        <artifactId>fireflyframework-security-idp</artifactId>
     </dependency>
 
     <!-- Internal database provider adapter (this module) -->
     <dependency>
         <groupId>org.fireflyframework</groupId>
-        <artifactId>fireflyframework-idp-internal-db</artifactId>
+        <artifactId>fireflyframework-security-idp-internal-db</artifactId>
     </dependency>
 </dependencies>
 ```
@@ -141,9 +141,9 @@ spring:
 controller works regardless of provider:
 
 ```java
-import org.fireflyframework.idp.adapter.IdpAdapter;
-import org.fireflyframework.idp.dtos.LoginRequest;
-import org.fireflyframework.idp.dtos.TokenResponse;
+import org.fireflyframework.security.idp.adapter.IdpAdapter;
+import org.fireflyframework.security.idp.dtos.LoginRequest;
+import org.fireflyframework.security.idp.dtos.TokenResponse;
 import org.springframework.http.ResponseEntity;
 import reactor.core.publisher.Mono;
 
@@ -236,7 +236,7 @@ User records store BCrypt password hashes, account status flags, and TOTP MFA en
 `@ConditionalOnProperty(name = "firefly.idp.provider", havingValue = "internal-db")` and the presence of an R2DBC
 `ConnectionFactory` on the classpath. When active it:
 
-1. Enables `InternalDbProperties` and the R2DBC repositories in `org.fireflyframework.idp.internaldb.repository`.
+1. Enables `InternalDbProperties` and the R2DBC repositories in `org.fireflyframework.security.idp.internaldb.repository`.
 2. Registers a strength-12 `BCryptPasswordEncoder` (unless one is already defined).
 3. Wires the service layer — JWT, authentication, user management, roles, password reset, password policy and MFA.
 4. Exposes the `InternalDbIdpAdapter` as the `IdpAdapter` bean consumed by the IDP core web layer.
@@ -247,7 +247,7 @@ custom `PasswordEncoder` or `JwtTokenService`) without forking the module.
 ## Documentation
 
 - Framework module catalog and docs hub: [github.com/fireflyframework](https://github.com/fireflyframework)
-- IDP core SPI and DTOs: [fireflyframework-idp](https://github.com/fireflyframework/fireflyframework-idp)
+- IDP core SPI and DTOs: [fireflyframework-security-idp](https://github.com/fireflyframework/fireflyframework-security-idp)
 - In-repo documentation in [`docs/`](docs/):
   - [API reference](docs/API.md)
   - [DTO field mapping](docs/DTO_FIELD_MAPPING.md)

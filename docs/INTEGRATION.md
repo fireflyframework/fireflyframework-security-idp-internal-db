@@ -4,7 +4,7 @@ This document provides a comprehensive guide for integrating the Internal Databa
 
 ## Overview
 
-The `fireflyframework-idp-internal-db-impl` is a self-contained Identity Provider (IDP) adapter that integrates seamlessly with the `common-platform-security-center`. It provides database-backed user authentication without requiring external IDP services like Keycloak or AWS Cognito.
+The `fireflyframework-security-idp-internal-db-impl` is a self-contained Identity Provider (IDP) adapter that integrates seamlessly with the `common-platform-security-center`. It provides database-backed user authentication without requiring external IDP services like Keycloak or AWS Cognito.
 
 ## Architecture
 
@@ -22,7 +22,7 @@ The `fireflyframework-idp-internal-db-impl` is a self-contained Identity Provide
 │                  │ detects provider=internal-db │
 │                  ▼                              │
 │   ┌─────────────────────────────────┐          │
-│   │  InternalDbIdpAdapter           │◄─────────┼─ fireflyframework-idp-internal-db-impl
+│   │  InternalDbIdpAdapter           │◄─────────┼─ fireflyframework-security-idp-internal-db-impl
 │   │  - Implements IdpAdapter        │          │
 │   │  - Handles authentication       │          │
 │   └──────────────┬──────────────────┘          │
@@ -73,7 +73,7 @@ Add both the Security Center core and the Internal DB IDP implementation to your
     <!-- Internal Database IDP Implementation -->
     <dependency>
         <groupId>org.fireflyframework</groupId>
-        <artifactId>fireflyframework-idp-internal-db-impl</artifactId>
+        <artifactId>fireflyframework-security-idp-internal-db-impl</artifactId>
         <version>1.0.0-SNAPSHOT</version>
     </dependency>
 
@@ -194,13 +194,13 @@ The Security Center's `IdpAutoConfiguration` automatically detects and loads the
 
 ```java
 @Configuration
-@ConditionalOnClass(name = "org.fireflyframework.idp.internaldb.adapter.InternalDbIdpAdapter")
+@ConditionalOnClass(name = "org.fireflyframework.security.idp.internaldb.adapter.InternalDbIdpAdapter")
 @ConditionalOnProperty(
     prefix = "firefly.security-center.idp", 
     name = "provider", 
     havingValue = "internal-db"
 )
-@ComponentScan(basePackages = "org.fireflyframework.idp.internaldb")
+@ComponentScan(basePackages = "org.fireflyframework.security.idp.internaldb")
 static class InternalDbIdpConfiguration {
     public InternalDbIdpConfiguration() {
         log.info("Loading Internal Database IDP adapter configuration");
@@ -209,7 +209,7 @@ static class InternalDbIdpConfiguration {
 ```
 
 **Key Points:**
-- Auto-loads when `fireflyframework-idp-internal-db-impl` is on the classpath
+- Auto-loads when `fireflyframework-security-idp-internal-db-impl` is on the classpath
 - Only activates when `provider=internal-db` is configured
 - Scans and registers all internal DB IDP components
 - No manual bean configuration required
@@ -375,7 +375,7 @@ node -e "console.log(require('crypto').randomBytes(32).toString('base64'))"
 The implementation includes comprehensive unit tests:
 
 ```bash
-cd fireflyframework-idp-internal-db-impl
+cd fireflyframework-security-idp-internal-db-impl
 mvn test
 ```
 
@@ -428,7 +428,7 @@ curl -X POST http://localhost:8080/api/v1/auth/login \
 **Cause**: Security Center cannot find the IDP adapter implementation.
 
 **Solution**:
-1. Verify `fireflyframework-idp-internal-db-impl` is in your dependencies
+1. Verify `fireflyframework-security-idp-internal-db-impl` is in your dependencies
 2. Check that `provider: internal-db` is set in configuration
 3. Run `mvn dependency:tree` to confirm the artifact is present
 
@@ -540,7 +540,7 @@ The migrations create these indexes for optimal performance:
 
 - **Main README**: [README.md](README.md)
 - **Security Center Docs**: `../common-platform-security-center/README.md`
-- **IDP Adapter Interface**: `../fireflyframework-idp-adapter/README.md`
+- **IDP Adapter Interface**: `../fireflyframework-security-idp-adapter/README.md`
 - **API Documentation**: Available via Swagger/OpenAPI when Security Center is running
 
 ## License

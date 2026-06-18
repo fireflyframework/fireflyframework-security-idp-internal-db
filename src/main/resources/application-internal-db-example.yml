@@ -59,7 +59,7 @@ spring:
 # Logging configuration
 logging:
   level:
-    org.fireflyframework.idp.internaldb: DEBUG
+    org.fireflyframework.security.idp.internaldb: DEBUG
     org.springframework.r2dbc: DEBUG
     io.r2dbc: DEBUG
     org.flywaydb: INFO
