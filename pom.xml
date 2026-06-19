@@ -11,7 +11,7 @@
         <relativePath/>
     </parent>
 
-    <artifactId>fireflyframework-idp-internal-db</artifactId>
+    <artifactId>fireflyframework-security-idp-internal-db</artifactId>
     <version>26.06.01</version>
     <packaging>jar</packaging>
 
@@ -19,7 +19,7 @@
     <description>Internal database-based implementation of the Firefly IDP Adapter using R2DBC</description>
 
     <properties>
-        <fireflyframework-idp.version>26.06.01</fireflyframework-idp.version>
+        <fireflyframework-security-idp.version>26.06.01</fireflyframework-security-idp.version>
         <jjwt.version>0.13.0</jjwt.version>
     </properties>
 
@@ -27,8 +27,8 @@
         <!-- Firefly IDP Adapter Interface -->
         <dependency>
             <groupId>org.fireflyframework</groupId>
-            <artifactId>fireflyframework-idp</artifactId>
-            <version>${fireflyframework-idp.version}</version>
+            <artifactId>fireflyframework-security-idp</artifactId>
+            <version>${fireflyframework-security-idp.version}</version>
         </dependency>
 
         <!-- Firefly Common R2DBC Library -->

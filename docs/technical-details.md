@@ -2,12 +2,12 @@
 
 ## Overview
 
-Successfully created `fireflyframework-idp-internal-db-impl` - a complete, self-contained Identity Provider implementation using internal PostgreSQL database storage with R2DBC for reactive operations.
+Successfully created `fireflyframework-security-idp-internal-db-impl` - a complete, self-contained Identity Provider implementation using internal PostgreSQL database storage with R2DBC for reactive operations.
 
 ## What Was Created
 
 ### 1. Core Module Structure
-- **`fireflyframework-idp-internal-db-impl/`** - New Maven module with proper parent POM inheritance
+- **`fireflyframework-security-idp-internal-db-impl/`** - New Maven module with proper parent POM inheritance
 - Full dependency management including R2DBC, JWT, BCrypt, Flyway, and Testcontainers
 
 ### 2. Domain Layer (`domain/`)
@@ -69,7 +69,7 @@ Created 4 comprehensive service classes:
 
 ### Updated Files
 1. **`common-platform-security-center-core/pom.xml`**
-   - Added `fireflyframework-idp-internal-db-impl` as optional runtime dependency
+   - Added `fireflyframework-security-idp-internal-db-impl` as optional runtime dependency
 
 2. **`IdpAutoConfiguration.java`**
    - Added `InternalDbIdpConfiguration` nested configuration class
@@ -168,7 +168,7 @@ The Security Center will automatically:
 ## File Structure
 
 ```
-fireflyframework-idp-internal-db-impl/
+fireflyframework-security-idp-internal-db-impl/
 ├── pom.xml
 ├── README.md
 ├── IMPLEMENTATION_SUMMARY.md
@@ -241,7 +241,7 @@ fireflyframework-idp-internal-db-impl/
 
 ## Conclusion
 
-The `fireflyframework-idp-internal-db-impl` provides a complete, production-ready internal Identity Provider implementation that:
+The `fireflyframework-security-idp-internal-db-impl` provides a complete, production-ready internal Identity Provider implementation that:
 - Requires no external IDP services
 - Integrates seamlessly with Security Center
 - Supports all core authentication features

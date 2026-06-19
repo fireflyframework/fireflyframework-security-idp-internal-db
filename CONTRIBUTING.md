@@ -39,7 +39,7 @@ If you find a bug or have a feature request:
 ```bash
 # Clone the repository
 git clone <repository-url>
-cd fireflyframework-idp-internal-db-impl
+cd fireflyframework-security-idp-internal-db-impl
 
 # Build and run tests
 mvn clean install
