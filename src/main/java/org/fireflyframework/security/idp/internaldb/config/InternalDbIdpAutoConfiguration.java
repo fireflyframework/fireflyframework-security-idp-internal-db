@@ -45,7 +45,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
  * </ul>
  */
 @AutoConfiguration
-@ConditionalOnProperty(name = "firefly.idp.provider", havingValue = "internal-db")
+@ConditionalOnProperty(name = "firefly.security.idp.provider", havingValue = "internal-db")
 @ConditionalOnClass(ConnectionFactory.class)
 @EnableConfigurationProperties(InternalDbProperties.class)
 @EnableR2dbcRepositories(basePackages = "org.fireflyframework.security.idp.internaldb.repository")

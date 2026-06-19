@@ -41,7 +41,7 @@ import java.time.Duration;
  */
 @Data
 @Validated
-@ConfigurationProperties(prefix = "firefly.idp.internal-db")
+@ConfigurationProperties(prefix = "firefly.security.idp.internal-db")
 public class InternalDbProperties {
 
     /**

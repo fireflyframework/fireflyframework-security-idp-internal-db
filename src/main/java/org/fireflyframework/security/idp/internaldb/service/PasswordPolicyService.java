@@ -26,7 +26,7 @@ import java.util.List;
 /**
  * Service for validating passwords against configurable policy rules.
  *
- * <p>Policy rules are configured via {@code firefly.idp.internal-db.password-policy.*} properties.
+ * <p>Policy rules are configured via {@code firefly.security.idp.internal-db.password-policy.*} properties.
  * Validation is enforced on user creation, password change, and password reset.
  */
 @Slf4j
